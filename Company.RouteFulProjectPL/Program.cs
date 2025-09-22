@@ -1,3 +1,8 @@
+using Company.RouteFullProject.DAL.Data.Contexts;
+using Company.RouteFulProject.BLL.Interfaces;
+using Company.RouteFulProject.BLL.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace Company.RouteFulProjectPL
 {
     public class Program
@@ -8,7 +13,16 @@ namespace Company.RouteFulProjectPL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+           
+           
+            builder.Services.AddDbContext<CompanyDbContext>(options =>
+            {
+                options.UseSqlServer("Server=. ; Database=CompanyRouteFull ; Trusted_Connection=True; TrustServerCertificate=True ;");
+            });
 
+            builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
+          
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,7 +38,7 @@ namespace Company.RouteFulProjectPL
 
             app.UseRouting();
 
-            app.UseAuthorization();
+           
 
             app.MapControllerRoute(
                 name: "default",

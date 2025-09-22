@@ -1,0 +1,78 @@
+﻿
+@model IEnumerable<Department>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="w-75 mx-auto">
+    <h1 class="position-relative">All Departments</h1>
+    @if (Model.Count() > 0)
+    {
+
+        <div class="mt-5">
+            <a asp-action="Create" class="btn btn-primary my-3 d-block width-fit ms-auto ">
+                <i class="fa-solid fa-plus"></i> Create Department
+            </a>
+            <table class="table table-hover table-striped text-center ">
+
+                <thead class="table-dark fw-bold">
+                    <tr>
+                        <td>Code</td>
+                        <td>Name</td>
+                        <td>CreatedAt</td>
+                        <td>Details</td>
+                        <td>Update</td>
+                        <td>Delete</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Code</td>
+                            <td>@item.Name</td>
+                            <td>@item.CreatedAt</td>
+                            <td>
+                                <a asp-action="Details" class="btn btn-warning">
+                                    <i class="fa-solid fa-eye me-2"></i>
+                                    Details
+
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-action="Update" class="btn btn-success">
+
+                                    <i class="fas fa-pen me-2"></i>
+                                    Update
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" class="btn btn-danger">
+                                    <i class="fas fa-trash me-2"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else{
+    <div class="card text-center shadow-sm p-5  mt-5 pt-3">
+        <div class="card-body">
+                <i class="fa-solid fa-face-sad-cry  fa-4x text-secondary mb-3"></i>
+            <h4 class="fw-bold text-muted">No Departments Found</h4>
+            <p class="text-muted">It looks like you haven’t added any departments yet.</p>
+            <a asp-action="Create" class="btn btn-primary mt-3">
+                <i class="fa-solid fa-plus"></i> Create Department
+            </a>
+        </div>
+    </div>
+    }
+    
+
+
+</div>
+
