@@ -1,0 +1,25 @@
+﻿@model CreateDepartmentDto
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="card w-75 mx-auto shadow-lg mt-3 rounded-3 " id="Department">
+    <div class="card-header bg-primary w-100  px-3 text-white  py-3  ">
+        <h2 class="position-static  ">Edit Department</h2>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit">
+          
+            <partial name="DepartmentPartialView/_CreateAndEditPartialView" />
+            <input type="submit" class="btn btn-success" value="Edit" />
+            <a class="btn btn-light ms-2" asp-action="Index">
+                Back to list
+
+                <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </form>
+    </div>
+</div>
+@section ValidationSection{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
