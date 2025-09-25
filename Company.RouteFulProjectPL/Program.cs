@@ -17,10 +17,11 @@ namespace Company.RouteFulProjectPL
            
             builder.Services.AddDbContext<CompanyDbContext>(options =>
             {
-                options.UseSqlServer("Server=. ; Database=CompanyRouteFull ; Trusted_Connection=True; TrustServerCertificate=True ;");
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
           
             
             var app = builder.Build();
