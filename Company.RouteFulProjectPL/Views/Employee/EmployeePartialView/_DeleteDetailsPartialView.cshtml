@@ -1,5 +1,7 @@
 ﻿
 @model Employee
+<input type="hidden" asp-for="Department.Id" />
+
 <div class="form-floating mb-3">
     <input asp-for="Name" placeholder="" class="form-control" readonly />
     <label asp-for="Name"></label>
@@ -40,5 +42,9 @@
 </div>
 <div class="form-floating mb-3">
     <input asp-for="CreatedAt" placeholder="" class="form-control" readonly />
-    <label asp-for="CreatedAt">Date of Creation</label>
+    <label asp-for="CreatedAt"></label>
+</div>
+<div class="form-floating mb-3">
+    <input asp-for="Department.Name" placeholder="" class="form-control" readonly />
+    <label asp-for="Department.Name"></label>
 </div>

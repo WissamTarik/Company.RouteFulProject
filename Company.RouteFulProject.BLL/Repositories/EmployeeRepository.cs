@@ -1,6 +1,7 @@
 ﻿using Company.RouteFullProject.DAL.Data.Contexts;
 using Company.RouteFullProject.DAL.Models;
 using Company.RouteFulProject.BLL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,14 @@ namespace Company.RouteFulProject.BLL.Repositories
 {
     public class EmployeeRepository : GenericRepository<Employee>,IEmployeeRepository
     {
+        private readonly CompanyDbContext _context;
+
         public EmployeeRepository(CompanyDbContext companyDbContext):base(companyDbContext)
         {
-            
+            _context = companyDbContext;
         }
+
+
         //private readonly CompanyDbContext _context;
         //public EmployeeRepository(CompanyDbContext companyDbContext)
         //{
@@ -48,6 +53,10 @@ namespace Company.RouteFulProject.BLL.Repositories
         //    return _context.SaveChanges();
         //}
 
-
+        public List<Employee>? GetByName(string name)
+        {
+           return  _context.Employees.Include(e=>e.Department)
+                   .Where(e=>e.Name.ToLower().Contains(name.ToLower())).ToList();
+        }
     }
 }

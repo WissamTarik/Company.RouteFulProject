@@ -1,7 +1,10 @@
 using Company.RouteFullProject.DAL.Data.Contexts;
 using Company.RouteFulProject.BLL.Interfaces;
 using Company.RouteFulProject.BLL.Repositories;
+using Company.RouteFulProject.PL.Mapping;
+using Company.RouteFulProject.PL.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Company.RouteFulProjectPL
 {
@@ -21,9 +24,21 @@ namespace Company.RouteFulProjectPL
             });
 
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
-            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-          
-            
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();//Allow Dependency injection for Employee repository
+            //builder.Services.AddAutoMapper(typeof(EmployeeProfile));
+            builder.Services.AddAutoMapper(M => M.AddProfile(new EmployeeProfile()));
+
+
+            //Methods that allow dependency injection of object of classes by CLR
+            //Methods differ in life time
+            //builder.Services.AddScoped<>();//Create object life time per request-Unreachable object
+            //builder.Services.AddTransient();//Create an object its lifetime per operation
+            //builder.Services.AddSingleton()//Create an object its lifetime per application
+
+
+            builder.Services.AddScoped<IScopedService, ScopedService>();//Per request
+            builder.Services.AddTransient<ITransientService,TransientService>();//per operation
+            builder.Services.AddSingleton<ISingletonService, SingletonService>();//per application
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

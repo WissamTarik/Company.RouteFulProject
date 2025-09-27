@@ -18,12 +18,14 @@ namespace Company.RouteFullProject.DAL.Models
         public string Phone { get; set; }
         public decimal Salary { get; set; }
         public bool IsActivated { get; set; }
-        public bool IsDeleted  { get; set; }
-
+        public bool IsDeleted { get; set; }
         //[DisplayName("Hiring Date")]
         public DateTime HiringDate { get; set; }
         //[DisplayName("Date of creation")]
         public DateTime CreatedAt { get; set; }
+
+        public int? DepartmentId { get; set; }
+        public Department Department { get; set; }
 
 
     }

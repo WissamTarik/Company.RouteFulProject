@@ -14,5 +14,7 @@ namespace Company.RouteFulProject.BLL.Interfaces
         //int AddEmployee(Employee model);
         //int UpdateEmployee(Employee model);
         //int DeleteEmployee(Employee model);
+
+        List<Employee> ?GetByName(string  name);   
     }
 }
