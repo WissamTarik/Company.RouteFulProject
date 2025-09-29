@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Company.RouteFullProject.DAL.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Company.RouteFulProject.PL.Dtos
@@ -28,6 +29,12 @@ namespace Company.RouteFulProject.PL.Dtos
         [DisplayName("Hiring Date")]
         public DateTime HiringDate { get; set; }
         [DisplayName("Date of creation")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
+
+        //public List<Employee> Employees { get; set; }
+
+        [DisplayName("Department")]
+        public int? DepartmentId { get; set; }
+        //public Department Department { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Company.RouteFullProject.DAL.Data.Contexts;
+using Company.RouteFullProject.DAL.Models;
 using Company.RouteFulProject.BLL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +20,18 @@ namespace Company.RouteFulProject.BLL.Repositories
         }
         public IEnumerable<T> GetAll()
         {
+            if(typeof (T)==typeof(Employee))
+                return (IEnumerable<T>) _context.Employees.Include(e=>e.Department).ToList();
             return _context.Set<T>().ToList();
         }
 
         public T? GetById(int id)
+
         {
+            if (typeof(T) == typeof(Employee))
+            {
+                return _context.Employees.Include(e=>e.Department).FirstOrDefault(e=>e.Id==id) as T ;
+            }
             return _context.Set<T>().Find(id);
         }
 

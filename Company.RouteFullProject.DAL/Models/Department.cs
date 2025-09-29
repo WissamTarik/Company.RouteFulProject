@@ -15,5 +15,7 @@ namespace Company.RouteFullProject.DAL.Models
         [DisplayName("Date of creation")]
         public DateTime? CreatedAt { get; set; }
 
+        public List<Employee> Employees { get; set; }
+
     }
 }
