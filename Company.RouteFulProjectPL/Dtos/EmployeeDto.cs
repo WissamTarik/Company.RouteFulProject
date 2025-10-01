@@ -36,5 +36,8 @@ namespace Company.RouteFulProject.PL.Dtos
         [DisplayName("Department")]
         public int? DepartmentId { get; set; }
         //public Department Department { get; set; }
+        public string? DepartmentName;
+        public string? ImageName { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }

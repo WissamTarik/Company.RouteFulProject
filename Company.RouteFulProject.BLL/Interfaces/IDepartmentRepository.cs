@@ -15,5 +15,7 @@ namespace Company.RouteFulProject.BLL.Interfaces
         //int AddDepartment(Department model);
         //int UpdateDepartment(Department model);
         //int DeleteDepartment(Department model);
+
+        Task<List<Department>>? GetDepartmentsByNameAsync(string name);
     }
 }

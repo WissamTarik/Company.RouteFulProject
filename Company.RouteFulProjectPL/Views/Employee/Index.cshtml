@@ -3,11 +3,21 @@
     ViewData["Title"] = "Index";
     // string ?MessageViewData = ViewData["Message"].Message as string;
     // string MessageViewBag = ViewBag.Message.Message;
-    // string? Message = TempData["Message"] as string;
+    string? Message = TempData["Message"] as string;
 }
 
-<section id="Employee" class="mx-auto mt-5 pt-3" >
-    <h1 class=" pt-5 mt-5">All Employees</h1>
+
+<section id="Employee" class="mx-auto mt-3 pt-3" >
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <div class="alert alert-dark alert-dismissible fade show" role="alert">
+            <strong>@Message</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+   
+
+    <h1 class=" pt-5 mt-0">All Employees </h1>
 
     @* <div class="mt-3 alert alert-danger">
         <p>@MessageViewData</p>
@@ -29,11 +39,11 @@
         <div class="mt-5">
           <div class="container">
                 <div class="my-5 row  g-3 justify-content-between">
-                    <form class="   col-12 col-sm-6">
+                    <form class="   col-12 col-sm-6" asp-action="Index">
                        <div class="row g-0">
 
                             <div class="col-sm-9">
-                                <input type="search" class="form-control  " placeholder="Search by name..." />
+                                <input type="search" name="SearchName" class="form-control  " placeholder="Search by name..." />
                            </div>
                             <button class="btn btn-secondary py-2 col-sm-3">Search</button>
                        </div>
@@ -49,14 +59,15 @@
 
                     <thead class="table-light fw-bold">
                         <tr>
+                            <td>Image Name</td>
                             <td>Name</td>
                             <td>Age</td>
-                            <td>Email</td>
-                            <td style="width:150px">Address</td>
+                            <td style="width:100px;">Email</td>
+                            <td style="width:200px;">Address</td>
                             <td>Phone</td>
                             <td>Salary</td>
-                            <td>IsActivated</td>
-                            <td>IsDeleted</td>
+                            <td style="width:100px;">IsActivated</td>
+                            <td style="width:100px;">IsDeleted</td>
                             <td>@Html.DisplayNameFor(e => e.HiringDate)</td>
                             <td>@Html.DisplayNameFor(e => e.CreatedAt)</td>
                             <td>@Html.DisplayNameFor(e => e.Department.Name)</td>
@@ -70,14 +81,17 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                                <td>
+                                    <img src="~/files/images/@item.ImageName" alt="Alternate Text" width="100px" class="rounded-circle" />
+                                </td>
                                 <td>@item.Name</td>
                                 <td>@item.Age</td>
-                                <td>@item.Email</td>
-                                <td style="width:150px;">@item.Address</td>
+                                <td style="width:100px;">@item.Email</td>
+                                <td style="width:200px;">@item.Address</td>
                                 <td>@item.Phone</td>
-                                <td>@item.Salary</td>
-                                <td>@item.IsActivated</td>
-                                <td>@item.IsDeleted</td>
+                                <td >@item.Salary</td>
+                                <td style="width:100px;">@item.IsActivated</td>
+                                <td style="width:100px;">@item.IsDeleted</td>
                                 <td>@item.HiringDate.Month-@item.HiringDate.Year</td>
                                 <td>@item.CreatedAt.Month-@item.CreatedAt.Year</td>
                                 @* <td>@item.Department?.Name</td> *@

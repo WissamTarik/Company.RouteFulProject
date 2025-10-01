@@ -1,4 +1,4 @@
-﻿@model Employee
+﻿@model EmployeeDto
 @{
     ViewData["Title"] = "Delete Employee";
 }
@@ -15,6 +15,7 @@
         <form asp-action="Delete">
 
             <partial name="EmployeePartialView/_DeleteDetailsPartialView" />
+            <input hidden asp-for="ImageName"/>
             @* <div class="form-floating mb-3">
                 <input asp-for="Name" placeholder="" class="form-control" readonly />
                 <label asp-for="Name"></label>
@@ -58,12 +59,30 @@
                 <label asp-for="CreatedAt">Date of Creation</label>
             </div> *@
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-danger" asp-action="Delete">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger" asp-action="Delete">
                                 <i class="fas fa-save me-3"></i> Delete
                             </button>
                             <a asp-action="Index" class="btn btn-outline-secondary mt-2">Return to Employee List
                                 <i class="fas fa-arrow-right ms-2 "></i>
                             </a>
+                        </div>
+
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-danger text-white">
+                                        <h5 class="modal-title">Confirm Delete</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure to Delete Employee @Model.Name?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger" >Yes, Delete</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
         </form>
     </div>

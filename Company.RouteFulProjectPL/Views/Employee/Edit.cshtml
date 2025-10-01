@@ -12,7 +12,8 @@
                 </div>
 
     <div class="card-body">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input hidden asp-for="ImageName"/>
             <partial name="EmployeePartialView/_CreateEditPartialView" />
             @* <div class="form-floating mb-3">
                 <input placeholder="" asp-for="Name" class="form-control" />

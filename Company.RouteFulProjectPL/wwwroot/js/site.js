@@ -16,3 +16,13 @@ SearchInput.addEventListener("keypress", (e) => {
     // Sending our request 
     xhr.send();
 })
+
+var serialized = System.Text.Json.JsonSerializer.Serialize(TempData["Message"]);
+
+//document.addEventListener('DOMContentLoaded', function () {
+//    var msg = serialized;
+//    document.querySelector('#createdModal .modal-body').textContent = msg;
+//    var modalEl = document.getElementById('createdModal');
+//    var bsModal = new bootstrap.Modal(modalEl);
+//    bsModal.show();
+//});

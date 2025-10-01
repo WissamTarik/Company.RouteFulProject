@@ -1,4 +1,4 @@
-﻿@model Employee
+﻿@model EmployeeDto
 @{
     ViewData["Title"] = "Details";
 }
@@ -56,7 +56,7 @@
                 <label asp-for="CreatedAt">Date of Creation</label>
             </div> *@
                         <div class="d-grid">
-                            <a class="btn btn-warning" asp-route-id="@Model.Id" asp-action="Edit">
+                            <a class="btn btn-warning"  asp-action="Edit" asp-route-id="@ViewBag.Id">
                                 Edit
                                 <i class="fas fa-pen-alt ms-2"></i>
 
