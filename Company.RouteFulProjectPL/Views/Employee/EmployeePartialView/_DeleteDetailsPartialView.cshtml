@@ -1,6 +1,5 @@
 ﻿
-@model Employee
-<input type="hidden" asp-for="Department.Id" />
+@model EmployeeDto
 
 <div class="form-floating mb-3">
     <input asp-for="Name" placeholder="" class="form-control" readonly />
@@ -45,6 +44,6 @@
     <label asp-for="CreatedAt"></label>
 </div>
 <div class="form-floating mb-3">
-    <input asp-for="Department.Name" placeholder="" class="form-control" readonly />
-    <label asp-for="Department.Name"></label>
+    <input asp-for="DepartmentName" placeholder="" class="form-control" readonly />
+    <label asp-for="DepartmentName"></label>
 </div>

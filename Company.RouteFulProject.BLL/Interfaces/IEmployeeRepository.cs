@@ -15,6 +15,6 @@ namespace Company.RouteFulProject.BLL.Interfaces
         //int UpdateEmployee(Employee model);
         //int DeleteEmployee(Employee model);
 
-        List<Employee> ?GetByName(string  name);   
+       Task<List<Employee>> ?GetByNameAsync(string  name);   
     }
 }

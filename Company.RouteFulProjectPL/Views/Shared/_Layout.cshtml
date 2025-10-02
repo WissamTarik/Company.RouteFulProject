@@ -51,7 +51,10 @@
             @RenderBody()
         </main>
     </div>
-
+    <input type="hidden" id="TempDataMessage"
+           value="@TempData["Message"]"
+           data-icon="@TempData["MessageIcon"]"
+           data-title="@TempData["MessageTitle"]" />
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - Company.RouteFulProjectPL - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

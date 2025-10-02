@@ -9,7 +9,7 @@ namespace Company.RouteFulProject.PL.Mapping
         public EmployeeProfile()
         {
             CreateMap<EmployeeDto, Employee>().ReverseMap()
-                .ForMember(d=>d.Name,o=>o.MapFrom(o=>o.Name));
+                 .ForMember(s=>s.DepartmentName,d=>d.MapFrom(d=>d.Department.Name));
         }
     }
 }

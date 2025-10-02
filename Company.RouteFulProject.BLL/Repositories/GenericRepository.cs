@@ -18,37 +18,38 @@ namespace Company.RouteFulProject.BLL.Repositories
         {
             _context = context;
         }
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             if(typeof (T)==typeof(Employee))
-                return (IEnumerable<T>) _context.Employees.Include(e=>e.Department).ToList();
-            return _context.Set<T>().ToList();
+                return (IEnumerable<T>)  await _context.Employees.Include(e=>e.Department).ToListAsync();
+            
+           
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public T? GetById(int id)
+        public async Task<T>? GetByIdAsync(int id)
 
         {
             if (typeof(T) == typeof(Employee))
             {
-                return _context.Employees.Include(e=>e.Department).FirstOrDefault(e=>e.Id==id) as T ;
+                return await _context.Employees.Include(e => e.Department).FirstOrDefaultAsync(e => e.Id == id) as T;
             }
-            return _context.Set<T>().Find(id);
+            else if (typeof(T) == typeof(Department))
+                return await _context.Departments.Include(d => d.Employees).FirstOrDefaultAsync(d => d.Id == id) as T;
+            return  await _context.Set<T>().FindAsync(id);
         }
 
-        public int Add(T model)
+        public async Task AddAsync(T model)
         {
-            _context.Set<T>().Add(model);
-            return _context.SaveChanges();
+            await _context.Set<T>().AddAsync(model);
         }
-        public int Update(T model)
+        public void Update(T model)
         {
             _context.Set<T>().Update(model);
-            return _context.SaveChanges();
         }
-        public int Delete(T model)
+        public void Delete(T model)
         {
             _context.Set<T>().Remove(model);
-            return _context.SaveChanges();
         }
 
     

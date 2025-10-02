@@ -1,4 +1,5 @@
 using Company.RouteFullProject.DAL.Data.Contexts;
+using Company.RouteFulProject.BLL;
 using Company.RouteFulProject.BLL.Interfaces;
 using Company.RouteFulProject.BLL.Repositories;
 using Company.RouteFulProject.PL.Mapping;
@@ -23,11 +24,14 @@ namespace Company.RouteFulProjectPL
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
-            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();//Allow Dependency injection for Employee repository
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();//Allow Dependency injection for Employee repository
             //builder.Services.AddAutoMapper(typeof(EmployeeProfile));
-            builder.Services.AddAutoMapper(M => M.AddProfile(new EmployeeProfile()));
 
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            builder.Services.AddAutoMapper(M => M.AddProfile(new EmployeeProfile()));
+            builder.Services.AddAutoMapper(M => M.AddProfile(new DepartmentProfile()));
 
             //Methods that allow dependency injection of object of classes by CLR
             //Methods differ in life time
@@ -37,7 +41,7 @@ namespace Company.RouteFulProjectPL
 
 
             builder.Services.AddScoped<IScopedService, ScopedService>();//Per request
-            builder.Services.AddTransient<ITransientService,TransientService>();//per operation
+            builder.Services.AddTransient<ITransientService, TransientService>();//per operation
             builder.Services.AddSingleton<ISingletonService, SingletonService>();//per application
             var app = builder.Build();
 

@@ -3,7 +3,7 @@
 @inject IDepartmentRepository _departmentRepository;
 @{
     // var Departments = new SelectList(ViewData["departments"] as IEnumerable<Department>,"Id","Name");
-    var Departments = new SelectList(_departmentRepository.GetAll(),"Id","Name");
+    var Departments = new SelectList( await _departmentRepository.GetAllAsync(),"Id","Name");
 }
 <div class="form-floating mb-3">
     <input placeholder="" asp-for="Name" class="form-control" />
@@ -55,6 +55,10 @@
     <input placeholder="" asp-for="CreatedAt" class="form-control" />
     <label asp-for="CreatedAt"></label>
     <span asp-validation-for="CreatedAt" class="text-danger"></span>
+</div>
+<div class=" mb-3">
+    <input placeholder="" asp-for="Image" class="form-control"  />
+    <label asp-for="Image" ></label>
 </div>
 
 <div class="form-floating mb-3">
