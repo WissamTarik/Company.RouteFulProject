@@ -1,43 +1,113 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Reset */
 body {
-  margin-bottom: 60px;
-}
-nav .navbar-toggler {
-    border: 1px solid rgba(255,255,255,0.5);
+    background: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #212529;
 }
 
-    nav .navbar-toggler:focus {
+/* Title */
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: #212529;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Wrapper */
+.main-w3layouts {
+    padding: 2rem 0;
+}
+
+.main-agileinfo {
+    width: 400px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.agileits-top {
+    padding: 2rem;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    transition: border-color 0.2s ease-in-out;
+    background: #fff;
+    color: #212529;
+}
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #0d6efd;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+    }
+
+/* Placeholder */
+::placeholder {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Checkbox */
+.wthree-text label {
+    font-size: 0.9rem;
+    color: #212529;
+}
+
+input.checkbox {
+    accent-color: #0d6efd; /* «·√“—ﬁ «·√”«”Ì */
+    margin-right: 6px;
+}
+
+/* Submit button */
+input[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background: #0d6efd;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    letter-spacing: 1px;
+}
+
+    input[type="submit"]:hover {
+        background: #0b5ed7;
+    }
+
+/* Footer text */
+.agileits-top p {
+    font-size: 0.9rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+    .agileits-top p a {
+        color: #0d6efd;
         text-decoration: none;
-        outline: 0;
-        box-shadow: 0 0 0 .25rem white;
+        font-weight: 500;
     }
-input[type="search"].form-control {
-    border-end-end-radius: 0;
-    border-start-end-radius: 0;
-}
 
-    input[type="search"].form-control + button {
-        border-end-start-radius: 0;
-        border-start-start-radius: 0;
-    }
-.width-fit{
-    width:fit-content;
+        .agileits-top p a:hover {
+            text-decoration: underline;
+        }
+
+/* Remove old background effects */
+.colorlib-bubbles, .colorlibcopy-agile {
+    display: none;
 }

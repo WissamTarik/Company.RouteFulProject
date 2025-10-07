@@ -1,0 +1,250 @@
+﻿/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(120deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ul{
+    list-style:none;
+}
+/* Wrapper */
+.main-w3layouts.wrapper {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 25px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+    /* Title */
+    .main-w3layouts.wrapper h1 {
+        color: #fff;
+        margin-bottom: 25px;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-align:center
+    }
+
+/* Form */
+.main-agileinfo .agileits-top {
+    width: 100%;
+}
+
+.main-agileinfo input[type="text"],
+.main-agileinfo input[type="email"],
+.main-agileinfo input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 10px 0 5px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.main-agileinfo input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
+    transform: scale(1.02);
+}
+
+/* Checkbox */
+.wthree-text {
+    margin: 12px 0;
+    text-align: left;
+    font-size: 14px;
+    color: #eee;
+}
+
+    .wthree-text input[type="checkbox"] {
+        margin-right: 6px;
+        accent-color: #667eea;
+    }
+
+/* Button */
+.main-agileinfo input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(120deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .main-agileinfo input[type="submit"]:hover {
+        background: linear-gradient(120deg, #764ba2, #667eea);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+/* Links */
+.main-agileinfo p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #eee;
+}
+
+    .main-agileinfo p a {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .main-agileinfo p a:hover {
+            color: #ffd369;
+        }
+
+/* Footer */
+.colorlibcopy-agile {
+    margin-top: 25px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Bubble animation */
+.bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+    .bubbles li {
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.3);
+        animation: rise 20s linear infinite;
+        bottom: -150px;
+        border-radius: 50%;
+    }
+
+        .bubbles li:nth-child(1) {
+            left: 25%;
+            width: 40px;
+            height: 40px;
+            animation-duration: 18s;
+        }
+
+        .bubbles li:nth-child(2) {
+            left: 10%;
+            width: 25px;
+            height: 25px;
+            animation-duration: 12s;
+        }
+
+        .bubbles li:nth-child(3) {
+            left: 70%;
+            width: 30px;
+            height: 30px;
+            animation-duration: 22s;
+        }
+
+        .bubbles li:nth-child(4) {
+            left: 40%;
+            width: 20px;
+            height: 20px;
+            animation-duration: 15s;
+        }
+
+        .bubbles li:nth-child(5) {
+            left: 65%;
+            width: 15px;
+            height: 15px;
+            animation-duration: 20s;
+        }
+
+        .bubbles li:nth-child(6) {
+            left: 85%;
+            width: 30px;
+            height: 30px;
+            animation-duration: 25s;
+        }
+
+        .bubbles li:nth-child(7) {
+            left: 55%;
+            width: 20px;
+            height: 20px;
+            animation-duration: 17s;
+        }
+
+        .bubbles li:nth-child(8) {
+            left: 90%;
+            width: 35px;
+            height: 35px;
+            animation-duration: 19s;
+        }
+
+        .bubbles li:nth-child(9) {
+            left: 15%;
+            width: 22px;
+            height: 22px;
+            animation-duration: 14s;
+        }
+
+        .bubbles li:nth-child(10) {
+            left: 50%;
+            width: 18px;
+            height: 18px;
+            animation-duration: 21s;
+        }
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(360deg);
+        opacity: 0;
+    }
+}
+.bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* ورا */
+}
+
+.main-w3layouts.wrapper {
+    position: relative;
+    z-index: 2; 
+}
+.main-agileinfo{
+    position:relative;
+    z-index:100;
+}
+span.text-danger{
+    font-size:12px;
+}
