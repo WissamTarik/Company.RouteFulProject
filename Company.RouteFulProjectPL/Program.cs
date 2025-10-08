@@ -1,9 +1,11 @@
 using Company.RouteFullProject.DAL.Data.Contexts;
+using Company.RouteFullProject.DAL.Models;
 using Company.RouteFulProject.BLL;
 using Company.RouteFulProject.BLL.Interfaces;
 using Company.RouteFulProject.BLL.Repositories;
 using Company.RouteFulProject.PL.Mapping;
 using Company.RouteFulProject.PL.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,6 +35,14 @@ namespace Company.RouteFulProjectPL
             builder.Services.AddAutoMapper(M => M.AddProfile(new EmployeeProfile()));
             builder.Services.AddAutoMapper(M => M.AddProfile(new DepartmentProfile()));
 
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
+                                       .AddEntityFrameworkStores<CompanyDbContext>()
+                                       .AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/Account/SignIn";
+            });
             //Methods that allow dependency injection of object of classes by CLR
             //Methods differ in life time
             //builder.Services.AddScoped<>();//Create object life time per request-Unreachable object
@@ -44,7 +54,7 @@ namespace Company.RouteFulProjectPL
             builder.Services.AddTransient<ITransientService, TransientService>();//per operation
             builder.Services.AddSingleton<ISingletonService, SingletonService>();//per application
             var app = builder.Build();
-
+         
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -53,17 +63,22 @@ namespace Company.RouteFulProjectPL
                 app.UseHsts();
             }
 
+           
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
-           
+        
+
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
             app.Run();
         }
     }

@@ -1,0 +1,65 @@
+﻿@model UserToReturnDto
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-dark text-white text-center">
+                    <h4> Edit User @Model.UserName</h4>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="Edit">
+                       
+                 
+            <div class="form-floating mb-3">
+                <input placeholder="" asp-for="UserName" class="form-control" />
+                <label asp-for="UserName"></label>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input placeholder="" asp-for="FirstName" class="form-control" />
+                <label asp-for="FirstName"></label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input placeholder="" asp-for="LastName" class="form-control" />
+                <label asp-for="LastName"></label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input placeholder="" asp-for="Email" class="form-control" />
+                <label asp-for="Email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+          
+          
+            
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success" asp-action="Edit">
+                                <i class="fas fa-save me-3"></i> Save
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary mt-2">
+                                Return to users  List
+                                <i class="fas fa-arrow-right ms-2"></i>
+
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section ValidationSection {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+

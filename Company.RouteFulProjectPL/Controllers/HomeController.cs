@@ -2,10 +2,12 @@ using System.Diagnostics;
 using System.Text;
 using Company.RouteFulProject.PL.Services;
 using Company.RouteFulProjectPL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.RouteFulProjectPL.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

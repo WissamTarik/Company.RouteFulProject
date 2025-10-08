@@ -105,7 +105,7 @@
                                     <td>@item.Department.Name</td>
                                 }
 
-                                <partial name="_ButtonsPartialView" model="@item.Id" />
+                                <partial name="_ButtonsPartialView" model="@item.Id.ToString()" />
                                 @* <td>
                                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning">
 

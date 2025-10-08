@@ -1,0 +1,44 @@
+﻿@model RoleToReturnDto
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-dark text-white text-center">
+                    <h4> Delete User @Model.Name</h4>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="Delete">
+
+
+                        <div class="form-floating mb-3">
+                            <input placeholder="" asp-for="Id" class="form-control" readonly />
+                            <label asp-for="Id"></label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input placeholder="" asp-for="Name" class="form-control" readonly />
+                            <label asp-for="Name"></label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger" asp-action="Delete">
+                                <i class="fas fa-trash me-3"></i> Delete
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary mt-2">
+                                Return to users  List
+                                <i class="fas fa-arrow-right ms-2"></i>
+
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section ValidationSection {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+

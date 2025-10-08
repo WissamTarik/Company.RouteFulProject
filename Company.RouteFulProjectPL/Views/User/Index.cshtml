@@ -1,0 +1,87 @@
+﻿@model IEnumerable<UserToReturnDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>All Users</h1>
+<section class="mx-auto mt-3 pt-3">
+
+    @if (Model.Count() > 0)
+    {
+
+        <div class="mt-5">
+            <div class="container">
+                <div class="my-5 row  g-3 justify-content-between">
+                    <form class="   col-12 col-sm-6" asp-action="Index">
+                        <div class="row g-0">
+
+                            <div class="col-sm-9">
+                                <input type="search" name="SearchName" class="form-control  " placeholder="Search by name..." />
+                            </div>
+                            <button class="btn btn-secondary py-2 col-sm-3">Search</button>
+                        </div>
+                    </form>
+                 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class=" text-center align-middle table table-dark table-hover table-striped  table-bordered ">
+
+                    <thead class="table-light fw-bold">
+                        <tr>
+                            <td>Id</td>
+                            <td>UserName</td>
+                            <td>First Name</td>
+                            <td >Last Name</td>
+                            <td >Email</td>
+                            <td>Roles</td>
+                          
+                            <th >Details</th>
+                            <th>Update</th>
+                            <th >Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                              
+                                <td>@item.Id</td>
+                                <td>@item.UserName</td>
+                                <td >@item.FirstName</td>
+                                <td >@item.LastName</td>
+                                <td>@item.Email</td>
+                                <td>
+
+                                    @foreach(var role in item.Roles)
+                                    {
+                                        <span class="badge bg-primary">@role</span>
+                                    }
+                                </td>
+                               
+
+                                <partial name="_ButtonsPartialView" model="@item.Id" />
+                           
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card text-center shadow-sm p-5  mt-5 pt-3">
+            <div class="card-body">
+                <i class="fa-solid fa-face-sad-cry  fa-4x text-secondary mb-3"></i>
+                <h4 class="fw-bold text-muted">No Users Found</h4>
+                <p class="text-muted">It looks like you haven’t added any users yet.</p>
+              
+            </div>
+        </div>
+    }
+
+
+</section>
+
