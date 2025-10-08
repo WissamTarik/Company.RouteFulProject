@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dtos\UserInRoleDto.cs\**" />
+    <Content Remove="Dtos\UserInRoleDto.cs\**" />
+    <EmbeddedResource Remove="Dtos\UserInRoleDto.cs\**" />
+    <None Remove="Dtos\UserInRoleDto.cs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.20">
       <PrivateAssets>all</PrivateAssets>

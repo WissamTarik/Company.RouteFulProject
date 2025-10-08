@@ -1,0 +1,21 @@
+﻿@model List<UserInRoleDto>
+@{
+    ViewData["Title"] = "AddOrRemoveUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string roleId = @ViewData["roleId"] as string;
+}
+
+<form asp-action="AddOrRemoveUsers" class="mt-5 py-5" asp-route-roleId="@roleId">
+    @for (int i=0;i<Model.Count();i++)
+    {
+        <div class="form-group">
+            <input asp-for="@Model[i].IsSelected" />
+            <label asp-for="@Model[i].IsSelected">@Model[i].UserName</label>
+            <input asp-for="@Model[i].Id" hidden/>
+            <input asp-for="@Model[i].UserName" hidden/>
+        </div>
+    }
+    <input type="submit" class="btn btn-success my-3 w-fit" value="Update" />
+    <a asp-action="Edit" class="btn btn-danger w-fit" asp-route-roleId="@roleId">Cancel</a>
+</form>
+

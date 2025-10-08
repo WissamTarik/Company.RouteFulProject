@@ -3,11 +3,13 @@ using Company.RouteFullProject.DAL.Models;
 using Company.RouteFulProject.BLL.Interfaces;
 using Company.RouteFulProject.PL.Dtos;
 using Company.RouteFulProject.PL.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Company.RouteFulProject.PL.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         //private readonly IEmployeeRepository _employeeRepository;

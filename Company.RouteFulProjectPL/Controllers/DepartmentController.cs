@@ -2,11 +2,13 @@
 using Company.RouteFullProject.DAL.Models;
 using Company.RouteFullProject.PL.Dtos;
 using Company.RouteFulProject.BLL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Company.RouteFulProject.PL.Controllers
 {
+    [Authorize]
     public class DepartmentController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

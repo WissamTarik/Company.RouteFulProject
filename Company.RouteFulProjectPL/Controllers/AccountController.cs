@@ -1,5 +1,6 @@
 ﻿using Company.RouteFullProject.DAL.Models;
 using Company.RouteFulProject.PL.Dtos;
+using Company.RouteFulProject.PL.Helpers;
 using Company.RouteFulProjectPL.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,7 @@ namespace Company.RouteFulProject.PL.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -53,9 +54,9 @@ namespace Company.RouteFulProject.PL.Controllers
                             ModelState.AddModelError("", item.Description);
                         }
                     }
-                
-                 
-                
+
+
+
                 }
                 ModelState.AddModelError("", "Invalid SignUp");
             }
@@ -76,25 +77,97 @@ namespace Company.RouteFulProject.PL.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-                if(user is not null)
+
+                if (user is not null)
                 {
-                    var Flag=await _userManager.CheckPasswordAsync(user, model.Password);
+                    var Flag = await _userManager.CheckPasswordAsync(user, model.Password);
                     if (Flag)
                     {
-                        
-                       var Result = await _signInManager.PasswordSignInAsync(user, model.Password,model.RememberMe, false);
+                        var Result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                         if (Result.Succeeded)
                         {
-
-                        return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home");
                         }
                     }
                 }
-
-                ModelState.AddModelError("","Invalid Login !!");
             }
-
+            ModelState.AddModelError("", "Invalid SignIn");
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SendResetPasswordUrl(ForgetPasswordDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user is not null)
+                {
+
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var url = Url.Action("ResetPassword", "Account",
+                             new { Email = model.Email, token }, Request.Scheme);
+                    var Email = new Email()
+                    {
+                        To = model.Email,
+                        Subject = "Reset password",
+                        Body = url
+                    };
+                    var Flag = EmailSettings.SendEmail(Email);
+                    if (Flag)
+                    {
+                        //check your inbox
+                        return RedirectToAction("CheckYourInput");
+                    }
+                }
+
+            }
+            ModelState.AddModelError("", "Invalid reset password operation");
+            return View("ForgetPassword", model);
+        }
+
+        [HttpGet]
+        public IActionResult CheckYourInput()
+        {
+            return View();
+        }
+
+        //Pa$$w0rd
+        [HttpGet]
+        public IActionResult ResetPassword(string Email,  string token)
+        {
+            TempData["email"] = Email;
+            TempData["token"] = token;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto model)
+        {
+            var email = TempData["email"] as string;
+            var token = TempData["token"] as string;
+
+            if (ModelState.IsValid)
+            {
+                if (email is null || token is null) return BadRequest("Invalid operation");
+                var user = await _userManager.FindByEmailAsync(email);
+                if(user is not null)
+                {
+                    var Result = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+                    if (Result.Succeeded)
+                    {
+                        return RedirectToAction("SignIn");
+                    }
+                }
+
+            }
+            ModelState.AddModelError("", "Invalid reset password operation");
+            return View();
+        }
+    
     }
 }
